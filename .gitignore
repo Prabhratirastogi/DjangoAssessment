@@ -2,8 +2,7 @@
 venv/
 
 # Ignore Django migration files
-*/__pycache__/
-*.sqlite3
+**/__pycache__/
+*.mysql
 *.pyc
 *~
-__pycache__/
