@@ -1,5 +1,22 @@
 from django.contrib import admin
-from .models import Book
-# Register your models here.
+from .models import Book, Bookshelf, Language, Person, Subject
 
-admin.site.register(Book)
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Bookshelf)
+class BookshelfAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Subject)
+class SubjectAdmin(admin.ModelAdmin):
+    pass
