@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -129,7 +129,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# ADMIN_EMAILS = ['prabhrati.rastogi@artiligent.global']
+# EMAIL_HOST_ADDRESS = 'smtp.gmail.com'
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+BASE_CATALOG_DIR = os.path.join(BASE_DIR, 'catalog_files')
+CATALOG_RDF_DIR = os.path.join(BASE_CATALOG_DIR, 'rdf')
+CATALOG_INDEX_DIR = os.path.join(CATALOG_RDF_DIR, 'index.json')
+CATALOG_LOG_DIR = os.path.join(BASE_CATALOG_DIR, 'log')
+CATALOG_TEMP_DIR = os.path.join(BASE_CATALOG_DIR, 'tmp')

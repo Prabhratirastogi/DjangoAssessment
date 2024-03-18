@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Book(models.Model):
     authors = models.ManyToManyField('Person')
     bookshelves = models.ManyToManyField('Bookshelf')
@@ -12,7 +13,6 @@ class Book(models.Model):
     title = models.CharField(blank=True, max_length=1024, null=True)
     translators = models.ManyToManyField(
         'Person', related_name='books_translated')
-    genre = models.CharField(max_length=64, blank=True, null=True)  # Added field for genre
 
     def __str__(self):
         if self.title:
@@ -20,17 +20,35 @@ class Book(models.Model):
         else:
             return str(self.id)
 
+    def get_formats(self):
+        return Format.objects.filter(book_id=self.id)
+
+
 class Bookshelf(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
 
+
+class Format(models.Model):
+    book = models.ForeignKey('Book', on_delete=models.CASCADE)
+    mime_type = models.CharField(max_length=32)
+    url = models.CharField(max_length=256)
+
+    def __str__(self):
+        return "%s (%s)" % (
+            self.mime_type,
+            self.book.__str__()
+        )
+
+
 class Language(models.Model):
     code = models.CharField(max_length=4, unique=True)
 
     def __str__(self):
         return self.code
+
 
 class Person(models.Model):
     birth_year = models.SmallIntegerField(blank=True, null=True)
@@ -39,6 +57,7 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Subject(models.Model):
     name = models.CharField(max_length=256)
