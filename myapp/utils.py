@@ -20,7 +20,6 @@ def fix_subtitles(title):
 
 
 def get_book(id, xml_file_path):
-    """ Based on https://gist.github.com/andreasvc/b3b4189120d84dec8857 """
 
     # Parse the XML.
     document = None
