@@ -13,15 +13,7 @@ NAMESPACES = {
 
 
 def fix_subtitles(title):
-    """
-    This formats subtitles with (semi)colons instead of new lines. The first
-    subtitle is introduced with a colon, and the rest are introduced with
-    semicolons.
-
-    >>> fix_subtitles(u'First Across ...\r\nThe Story of ... \r\n'
-    ... 'Being an investigation into ...')
-    u'First Across ...: The Story of ...; Being an investigation into ...'
-    """
+   
 
     new_title = LINE_BREAK_PATTERN.sub(': ', title, 1)
     return LINE_BREAK_PATTERN.sub('; ', new_title)
